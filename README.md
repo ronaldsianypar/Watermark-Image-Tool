@@ -1,6 +1,13 @@
+SEKARANG UBAH README.md GUA KARNA GUA SUDAH DEPLOY KE https://watermark-image-tool.netlify.app/
+
+
 # Watermark Image
 
 A lightweight, browser-based tool for adding watermarks to images. Everything runs client-side — there is no backend, no database, and no image ever leaves your device.
+
+# Live Demo
+
+<a href="https://watermark-image-tool.netlify.app/" target="_blank" rel="noopener noreferrer">https://watermark-image-tool.netlify.app/</a>
 
 ## Overview
 
