@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Watermark Image</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('watermark-ktp-theme');
+        document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-top">
+      <h1>Watermark Image</h1>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Ganti tema">☀️</button>
+    </div>
+    <p>Tambahkan watermark pada foto Image dalam tiga langkah: unggah, atur, unduh.</p>
+    <div class="privacy-note">
+      Note: Foto diproses sepenuhnya di browser Anda menggunakan Canvas API. Aplikasi ini tidak mengirim gambar ke server
+      atau backend mana pun.
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <section class="card" aria-label="Upload dan preview">
+        <div class="card-head"><span class="step-badge">01</span>
+          <h2>Upload Foto Image</h2>
+        </div>
+        <p class="card-sub">Pilih gambar Image yang ingin diberi watermark · JPG, PNG</p>
+
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload foto Image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 16V4m0 0L7 9m5-5l5 5" />
+            <path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3" /></svg>
+          <strong>Upload Foto Image</strong>
+          <span>JPG, PNG</span>
+          <button type="button" class="btn-choose" id="chooseBtn">Pilih Foto</button>
+          <span>atau drag & drop di sini</span>
+        </div>
+        <input type="file" id="fileInput" accept="image/*">
+
+        <div class="preview-area" id="previewArea">
+          <div class="file-chip">
+            <span class="fname" id="fileName"></span>
+            <span class="fsize" id="fileSize"></span>
+            <button type="button" id="changeBtn">Ganti</button>
+            <button type="button" id="removeBtn">Hapus</button>
+          </div>
+          <p class="preview-label">Preview hasil watermark</p>
+          <div class="canvas-wrap"><canvas id="canvas"></canvas></div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Pengaturan watermark">
+        <div class="card-head"><span class="step-badge">02</span>
+          <h2>Atur Watermark</h2>
+        </div>
+        <p class="card-sub">Sesuaikan teks dan tampilannya — perubahan langsung terlihat di preview</p>
+
+        <div class="field">
+          <label for="wmText">Teks</label>
+          <textarea id="wmText"></textarea>
+        </div>
+
+        <div class="field field-row">
+          <div>
+            <label for="fontSize">Ukuran font <span class="val" id="sizeVal">28px</span></label>
+            <input type="range" id="fontSize" min="10" max="80" value="28">
+          </div>
+          <div>
+            <label for="rotation">Rotasi <span class="val" id="rotVal">-30°</span></label>
+            <input type="range" id="rotation" min="-90" max="90" value="-30">
+          </div>
+        </div>
+
+        <div class="field field-row">
+          <div>
+            <label for="opacity">Opacity <span class="val" id="opVal">20%</span></label>
+            <input type="range" id="opacity" min="5" max="100" value="20">
+          </div>
+          <div>
+            <label for="wmColor">Warna</label>
+            <input type="color" id="wmColor" value="#c81e1e">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="pattern">Pola</label>
+          <select id="pattern">
+            <option value="tile">Berulang (tile penuh)</option>
+            <option value="single">Satu kali (posisi tetap)</option>
+          </select>
+        </div>
+
+        <div class="field" id="posField">
+          <label>Posisi</label>
+          <div class="pos-grid" id="posGrid" role="group" aria-label="Posisi watermark">
+            <button type="button" data-p="tl" aria-pressed="false">↖</button>
+            <button type="button" data-p="tc" aria-pressed="false">↑</button>
+            <button type="button" data-p="tr" aria-pressed="false">↗</button>
+            <button type="button" data-p="cl" aria-pressed="false">←</button>
+            <button type="button" data-p="cc" aria-pressed="true">●</button>
+            <button type="button" data-p="cr" aria-pressed="false">→</button>
+            <button type="button" data-p="bl" aria-pressed="false">↙</button>
+            <button type="button" data-p="bc" aria-pressed="false">↓</button>
+            <button type="button" data-p="br" aria-pressed="false">↘</button>
+          </div>
+        </div>
+
+        <div class="step3-label"><span class="step-badge">03</span>
+          <h2>Download</h2>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="resetBtn" disabled>Reset</button>
+          <button type="button" class="btn btn-primary" id="downloadBtn" disabled>Download Watermarked Image</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toastHost" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
