@@ -68,8 +68,8 @@ These privacy guarantees describe the application **as implemented in this repos
 No build step, no dependencies. Clone the repository and open the file directly:
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clone https://github.com/ronaldsianypar/Watermark-Image-Tool
+cd Watermark-Image-Tool
 ```
 
 Then either:
@@ -95,10 +95,16 @@ Since this is a fully static project (HTML/CSS/JS only), it can be deployed to a
 
 ```
 project-root/
-├── index.html    # Markup and layout
-├── style.css     # Styling, theming (dark/light), and responsive layout
-├── script.js     # Upload handling, canvas rendering, watermark logic, theme toggle
-└── README.md
+├── index.html                 # Main markup and layout
+├── assets/
+│   ├── css/
+│   │   └── style.css          # Styling, theming, and responsive layout
+│   ├── js/
+│   │   └── script.js          # Upload handling, canvas rendering, watermark logic, and theme toggle
+│   └── image/
+│       ├── desktop-demo.png   # Desktop preview screenshot
+│       └── mobile-demo.png    # Mobile preview screenshot
+└── README.md                  # Project documentation
 ```
 
 ## Tech Stack
@@ -119,4 +125,10 @@ No backend, no database, no external runtime dependencies.
 
 ## Screenshots / Demo
 
-*(Add screenshots or a short GIF/demo link here once available.)*
+### Desktop
+
+![Desktop Preview](assets/image/desktop-demo.png)
+
+### Mobile
+
+![Mobile Preview](assets/image/mobile-demo.png)
